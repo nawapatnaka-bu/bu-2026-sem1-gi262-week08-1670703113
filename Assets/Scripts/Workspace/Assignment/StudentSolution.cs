@@ -14,11 +14,14 @@ namespace Assignment
 
         private int Factorial(int n)
         {
-            // base case
+            
+            if (n <= 1)
+            {
+                return 1;
+            }
 
-            // recursive case
-
-            return -1;
+            
+            return n * Factorial(n - 1);
         }
 
         public int LCT02_RecursiveFibonacci(int n)
@@ -28,11 +31,14 @@ namespace Assignment
 
         private int Fibonacci(int n)
         {
-            // base case
+            
+            if (n <= 1)
+            {
+                return n;
+            }
 
-            // recursive case
-
-            return -1;
+            
+            return Fibonacci(n - 1) + Fibonacci(n - 2);
         }
 
         public int LCT03_RecursiveSumOfOneToN(int n)
@@ -42,11 +48,14 @@ namespace Assignment
 
         private int SumOfOneToN(int n)
         {
-            // base case
+            
+            if (n <= 0)
+            {
+                return 0;
+            }
 
-            // recursive case
-
-            return -1;
+            
+            return n + SumOfOneToN(n - 1);
         }
 
         public int LCT04_RecursiveSumOfNumbers(int[] numbers)
@@ -56,11 +65,14 @@ namespace Assignment
 
         private int SumOfNumbers(int[] numbers, int index)
         {
-            // base case
+            
+            if (index >= numbers.Length)
+            {
+                return 0;
+            }
 
-            // recursive case
-
-            return -1;
+            
+            return numbers[index] + SumOfNumbers(numbers, index + 1);
         }
 
         #endregion
@@ -74,7 +86,14 @@ namespace Assignment
 
         private int Power(int baseNum, int exponent)
         {
-            return -1;
+            
+            if (exponent == 0)
+            {
+                return 1;
+            }
+
+            
+            return baseNum * Power(baseNum, exponent - 1);
         }
 
         public bool ASN02_IsPalindrome(string str)
@@ -84,7 +103,20 @@ namespace Assignment
 
         private bool IsPalindrome(string str, int start, int end)
         {
-            return false;
+            
+            if (start >= end)
+            {
+                return true;
+            }
+
+            
+            if (str[start] != str[end])
+            {
+                return false;
+            }
+
+            
+            return IsPalindrome(str, start + 1, end - 1);
         }
 
         public int ASN03_RecursiveGCD(int a, int b)
@@ -94,7 +126,14 @@ namespace Assignment
 
         private int GCD(int a, int b)
         {
-            return -1;
+            
+            if (b == 0)
+            {
+                return a;
+            }
+
+            
+            return GCD(b, a % b);
         }
 
         public int ASN04_RecursiveBinarySearch(int[] arr, int target)
@@ -104,7 +143,27 @@ namespace Assignment
 
         private int BinarySearch(int[] arr, int target, int low, int high)
         {
-            return -1;
+            
+            if (low > high)
+            {
+                return -1;
+            }
+
+            int mid = low + (high - low) / 2;
+
+            
+            if (arr[mid] == target)
+            {
+                return mid;
+            }
+
+            
+            if (arr[mid] > target)
+            {
+                return BinarySearch(arr, target, low, mid - 1);
+            }
+
+            return BinarySearch(arr, target, mid + 1, high);
         }
 
         #endregion
